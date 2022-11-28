@@ -1,0 +1,183 @@
+<div class="contenido">
+  <div class="content-container">
+    <h1>Nuevo articulo</h1>
+    <div class="formulario">
+      <mat-stepper #stepper>
+        <mat-step
+          [stepControl]="firstFormGroup"
+          errorMessage="Información requerida"
+        >
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Información del articulo</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Código de barras</mat-label>
+              <input
+                matInput
+                placeholder="7506174512200"
+                formControlName="codBarras"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Categoría ID</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="categoriaID"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input
+                matInput
+                placeholder="Nombre del articulo"
+                formControlName="nombre"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <input
+                matInput
+                placeholder="Descripción del articulo"
+                formControlName="descripcion"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Proveedor ID</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="proveedorID"
+                required
+              />
+            </mat-form-field>
+          </form>
+          <div>
+            <button mat-button matStepperNext>Siguiente</button>
+          </div>
+        </mat-step>
+        <mat-step
+          [stepControl]="secondFormGroup"
+          errorMessage="Información requerida"
+        >
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Precio del articulo</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Stock</mat-label>
+              <input
+                matInput
+                placeholder="55"
+                formControlName="stock"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Precio de compra</mat-label>
+              <input
+                matInput
+                placeholder="255.00"
+                formControlName="precioCompra"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Utilidad</mat-label>
+              <input
+                matInput
+                placeholder="120.00"
+                formControlName="utilidad"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Precio de venta</mat-label>
+              <input
+                matInput
+                placeholder="550.00"
+                formControlName="precioVenta"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>IVA</mat-label>
+              <input
+                matInput
+                placeholder="100.00"
+                formControlName="iva"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Promoción</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="promoID"
+                required
+              />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Regresar</button>
+              <button mat-button matStepperNext>Siguiente</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step
+          [stepControl]="thirdFormGroup"
+          errorMessage="Información requerida"
+        >
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Estado del articulo</ng-template>
+            <mat-form-field appearance="fill">
+              <mat-label>Disponible</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="disponible"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Visible</mat-label>
+              <input
+                matInput
+                placeholder=""
+                formControlName="visible"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Imagenes</mat-label>
+              <input matInput placeholder="" formControlName="img" required />
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Regresar</button>
+              <button mat-button (click)="stepper.reset()">Limpiar</button>
+              <button
+                mat-raised-button
+                (click)="enviarArticulo()"
+                color="primary"
+                [disabled]="!(firstFormGroup.valid && secondFormGroup.valid)"
+              >
+                Guardar
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </div>
+  <div class="component-header">
+    <!-- Boton Actualizar -->
+    <mat-card>
+      <app-product-check
+        [firstFormGroup]="firstFormGroup"
+        [secondFormGroup]="secondFormGroup"
+        [thirdFormGroup]="thirdFormGroup"
+      ></app-product-check>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+@import "/src/styles.scss";
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.drawer-contenido{
+  height: 100%;
+}
+
+.sidenav {
+  color: $w;
+  display: flex;
+  box-shadow: none;
+  background-color: white;
+}
+
+.mat-toolbar {
+  opacity: 0.9;
+  background: $p-dark;
+  color: white;
+}
+
+.sidenav-content {
+  display: block;
+  height: 100%;;
+  align-items: center;
+  justify-content: center;
+  background-color: $background;
+  opacity: 0.9;
+  text-align: center;
+}
+
+.toolbar {
+  z-index: 2;
+  height: 55px;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.toolbar > img{
+  margin: 0 1.5em;
+  height: 80%;
+  width: auto;
+}
+
+.user{
+  margin: 0 1.2em;
+  font-size: 0.8em;
+}
+
+[matLine] {
+  padding-right: 1em !important;
+}
+
+mat-drawer{
+  width: 17%;
+}
+
+// Accordion
+
+mat-accordion > *, mat-expansion-panel > *, mat-panel-title, mat-panel-description {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;	
+  box-shadow: none !important;
+  width: min-content !important;
+}
+
+.breadcrumb{
+  display:flex;
+  padding: 1em 1em 0 0 !important;
+  border-radius: 0;
+  background-color: transparent;
+  text-align: start;
+}
+
+.breadcrumb li {
+  color: $s-light;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 0.7em;
+}
+
+.breadcrumb a {
+  color: $background;
+  font-family: Roboto, "Helvetica Neue", sans-serif !important;
+}
+
+.submenu-container{
+  display: flex;
+  flex-direction: column;
+  //margin: 2em 2em !important;
+}
+
+.submenu-item{
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: $p-dark;
+  font-size: 1em !important;
+}

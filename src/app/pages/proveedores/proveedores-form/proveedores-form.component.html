@@ -1,0 +1,91 @@
+<div class="contenido">
+  <div class="content-container">
+    <h1>{{ titulo }}</h1>
+    <div class="formulario">
+      <form [formGroup]="formGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>RFC</mat-label>
+          <input
+            matInput
+            placeholder="Enter RFC"
+            formControlName="rfc"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Razón Social</mat-label>
+          <input
+            matInput
+            placeholder="Nombre completo de la empresa"
+            formControlName="razonSocial"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del contacto</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="nombreContacto"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Telefono principal</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="telefonoPrincipal"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Telefono móvil</mat-label>
+          <input
+            matInput
+            placeholder=""
+            formControlName="telefonoMovil"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Correo electronico</mat-label>
+          <input matInput placeholder="" formControlName="email" required />
+        </mat-form-field>
+        <mat-slide-toggle
+          [color]="color"
+          [disabled]="disabled"
+          formControlName="activo"
+        >
+          Activo
+        </mat-slide-toggle>
+        <div>
+          <button mat-button (click)="resetForm()" [disabled]="!cleanButton">Limpiar</button>
+          <button
+            mat-raised-button
+            (click)="enviarProveedor()"
+            color="primary"
+            [swal]="alertSwal"
+            [disabled]="!formGroup.valid"
+          >
+            Guardar
+          </button>
+        </div>
+      </form>
+      <swal
+        #alertSwal
+        title="Atención"
+        text="{{ swalMensaje }}"
+        icon="{{ swalTipo }}"
+        (confirm)="onSwalDialog()"
+      >
+      </swal>
+    </div>
+  </div>
+  <div class="component-header">
+    <!-- Boton Actualizar -->
+    <mat-card>
+      <app-proveedores-check [formGroup]="formGroup"></app-proveedores-check>
+    </mat-card>
+  </div>
+</div>

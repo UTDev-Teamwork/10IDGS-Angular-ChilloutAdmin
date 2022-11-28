@@ -1,0 +1,98 @@
+<div class="contenido">
+  <div class="content-container">
+    <h1>{{titulo}}</h1>
+    <div class="chart-container">
+      <div id="loadingSpinner" *ngIf="loadingChart">
+        <mat-spinner></mat-spinner>
+      </div>
+      <canvas id="TopTenChart" #chart>
+        <div>{{ chart }}</div>
+      </canvas>
+    </div>
+  </div>
+  <div class="component-header">
+    
+      <!-- Boton Actualizar -->
+      <div class="header-actions">
+        <div
+          class="ripple-container mat-elevation-z4"
+          matRipple
+          (click)="updateChart()"
+        >
+          Actualizar
+        </div>
+        <div id="lastUpdateText">
+          Ultima actualización:
+          <span id="lastUpdateSpan">{{ lastUpdate }}</span>
+        </div>
+      </div>
+
+      <mat-card>
+        <h3>Filtros de busqueda</h3>
+      <!-- Selector de Fecha -->
+      <div id="datePicker">
+        <span>Seleccione un rango de fechas:</span>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha</mat-label>
+          <mat-date-range-input
+            [formGroup]="range"
+            [rangePicker]="picker"
+            [disabled]="datePickerState"
+          >
+            <input
+              matStartDate
+              formControlName="start"
+              placeholder="Start date"
+            />
+            <input matEndDate formControlName="end" placeholder="End date" />
+          </mat-date-range-input>
+          <!--mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint-->
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+            disabled="false"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker disabled="false">
+            <mat-date-range-picker-actions>
+              <button mat-button matDateRangePickerCancel>Cancelar</button>
+              <button mat-raised-button color="primary" matDateRangePickerApply>
+                Aplicar
+              </button>
+            </mat-date-range-picker-actions>
+          </mat-date-range-picker>
+
+          <mat-error
+            *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+            >Fecha de inicio invalida</mat-error
+          >
+          <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+            >Fecha de fin invalida</mat-error
+          >
+        </mat-form-field>
+
+        <p *ngIf="false">Selected range: {{ range.value | json }}</p>
+      </div>
+      <!-- Toggle button -->
+      <div id="btnVendidos">
+        <mat-slide-toggle [(ngModel)]="toggleVendidos"
+          >Articulos
+          {{ toggleVendidos ? "más" : "menos" }} vendidos</mat-slide-toggle
+        >
+      </div>
+      <!-- Slider cantidad de productos -->
+      <div id="sliderCantidad">
+        <span>Cantidad de articulos: {{quantityProducts}}</span>
+        <mat-slider
+          class="example-margin"
+          [max]="maxProducts"
+          [min]="minProducts"
+          [step]="stepPerProduct"
+          thumbLabel="true"
+          [(ngModel)]="quantityProducts"
+          aria-labelledby="example-name-label"
+        >
+        </mat-slider>
+      </div>
+    </mat-card>
+  </div>
+</div>

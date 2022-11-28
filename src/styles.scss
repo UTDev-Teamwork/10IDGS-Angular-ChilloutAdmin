@@ -1,1 +1,88 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ChillOut-Admin-primary: mat.define-palette(mat.$gray-palette, 800, 700, 900);
+$ChillOut-Admin-accent: mat.define-palette(
+  mat.$blue-gray-palette,
+  A200,
+  A100,
+  A400
+);
+
+// The warn palette is optional (defaults to red).
+$ChillOut-Admin-warn: mat.define-palette(mat.$deep-orange-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ChillOut-Admin-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $ChillOut-Admin-primary,
+      accent: $ChillOut-Admin-accent,
+      warn: $ChillOut-Admin-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($ChillOut-Admin-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+// Colores base propios de mi porque alchile no le entiendo al material
+$p: #424242;
+$p-light: #6d6d6d;
+$p-dark: #1b1b1b;
+
+$s: #78909c;
+$s-light: #a7c0cd;
+$s-dark: #4b636e;
+
+$w: #523a3a;
+$accent: #3a4a52;
+
+$background: #f5f1ee;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+li > a{
+  text-decoration: none;
+  color: $w;
+  font-family: 'Anton', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h5 {
+  font-family: 'Anton', sans-serif !important;
+}
+
+.mat-expansion-panel-content > .mat-expansion-panel-body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.mat-content,
+.mat-content-hide-toggle {
+  padding: 0 !important;
+  margin: 0 !important;
+}

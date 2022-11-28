@@ -1,0 +1,52 @@
+@import "/src/styles.scss";
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+         Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.content-container {
+  width: 70%;
+}
+
+.contenido {
+  padding: 1em 1em 1em 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.component-header {
+  width: 30%;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2em !important;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+mat-card {
+  height: 100%;
+}
+
+mat-card div{
+  margin: 2em 0;
+}
+
+mat-stepper {
+  background-color: $background !important;
+}
+
+form{
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+}

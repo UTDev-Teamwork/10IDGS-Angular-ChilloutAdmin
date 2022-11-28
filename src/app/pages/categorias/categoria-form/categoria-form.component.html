@@ -1,0 +1,83 @@
+<div class="contenido">
+  <div class="content-container">
+    <h1>Nueva categoría</h1>
+    <div class="formulario">
+      <form [formGroup]="categoriaForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="" formControlName="nombre" required />
+        </mat-form-field>
+
+        <div class="controls">
+          <div>
+            <mat-label *ngIf="!imgURL">Agregar imagen</mat-label>
+            <mat-label *ngIf="imgURL">Cambiar imagen</mat-label>
+            <button
+              class="imgButton"
+              mat-raised-button
+              type="button"
+              (click)="fileInput.click()"
+              color="primary"
+            >
+              <mat-icon mat-list-icon>add_photo_alternate</mat-icon>
+            </button>
+          </div>
+          <input
+            (change)="onFileChanged($event)"
+            #fileInput
+            type="file"
+            id="file"
+            class="hiddenInput"
+          />
+          <!--div class="imgfield">
+            <img [src]="imgURL" height="200" *ngIf="imgURL" class="imgsource"/>
+          </div-->
+          <div *ngIf="imgURL">
+            <mat-label *ngIf="imgURL">Remover imagen</mat-label>
+            <button
+              class="imgButton"
+              mat-button
+              type="button"
+              (click)="imgURL = ''"
+              color="primary"
+            >
+              <mat-icon mat-list-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="imgfield">
+          <button mat-button (click)="categoriaForm.reset(); imgURL = ''">
+            Limpiar
+          </button>
+          <button
+            mat-raised-button
+            [swal]="alertSwal"
+            color="primary"
+            [disabled]="!categoriaForm.valid"
+            (click)="enviar()"
+          >
+            Guardar
+          </button>
+          <swal
+            #alertSwal
+            title="Atención"
+            text={{swalMensaje}}
+            icon={{swalTipo}}
+            (confirm)="onSwalDialog()"
+          >
+          </swal>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="component-header">
+    <!-- Boton Actualizar -->
+    <mat-card>
+      <app-categoria-check
+        [categoriaForm]="categoriaForm"
+        [imagen]="imgURL"
+      ></app-categoria-check>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+@import "/src/styles.scss";
+
+#loadingSpinner{
+  position: absolute;
+  top: 45%;
+  left: 37%;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+         Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.content-container {
+  width: 80%;
+}
+
+.contenido {
+  padding: 1em 1em 1em 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.component-header {
+  width: 20%;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2em !important;
+}
+#lastUpdateText {
+  font-size: 0.8em;
+}
+
+#lastUpdateSpan {
+  font-size: 0.2em;
+}
+
+.ripple-container {
+  padding: 0.2em;
+  font-size: 1.1em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+mat-card {
+  height: 100%;
+}
+
+mat-card div{
+  margin: 2em 0;
+}
+
+#datePicker {
+  width: 100%;
+}
+
+mat-card > div > span{
+  font-size: 0.9em;
+}
+
+#btnVendidos {
+  font-size: 0.9em;
+}
+
+#datePicker .mat-form-field {
+  width: 100%;
+  font-size: 0.9em;
+}
+
+mat-slider{
+  width: 100%;
+}

@@ -1,0 +1,109 @@
+<div class="contenido">
+  <div class="content-container">
+    <div class="header-div">
+      <div class="header-title"><h1>Catalogo de articulos</h1></div>
+      <div>Hola we</div>
+    </div>
+    <div class="table-div">
+      <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      </div>
+      <div class="table-container">
+        <table mat-table [dataSource]="data">
+          <!-- Codigo de barras -->
+          <ng-container matColumnDef="codBarras">
+            <th mat-header-cell *matHeaderCellDef>Codigo de barras</th>
+            <td mat-cell *matCellDef="let element">{{ element.cod_barras }}</td>
+          </ng-container>
+
+          <!-- Id Clasificacion -->
+          <ng-container matColumnDef="idClasif">
+            <th mat-header-cell *matHeaderCellDef>ID Clas</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.id_clasificacion }}
+            </td>
+          </ng-container>
+
+          <!-- Descripcion -->
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.descripcion }}
+            </td>
+          </ng-container>
+
+          <!-- Descripcion corta -->
+          <ng-container matColumnDef="desCorta">
+            <th mat-header-cell *matHeaderCellDef>Descripción corta</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.descripcion_corta }}
+            </td>
+          </ng-container>
+
+          <!-- Precio -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let element">
+              $ {{ element.precio_venta }}
+            </td>
+          </ng-container>
+
+          <!-- Stock -->
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.stock }}
+            </td>
+          </ng-container>
+
+          <!-- Articulo disponible -->
+          <ng-container matColumnDef="artDisp">
+            <th mat-header-cell *matHeaderCellDef>Disponible</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.articulo_disponible ? "SI" : "NO" }}
+            </td>
+          </ng-container>
+
+          <!-- Boton de accion -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Accion</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Acciones del articulo"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>visibility</mat-icon>
+                  <span>Detalles</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>delete</mat-icon>
+                  <span>Eliminar</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+    <mat-paginator
+        [length]="totalItems"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onChangePage($event)"
+        showFirstLastButtons
+        aria-label="Select page of articles"
+      >
+      </mat-paginator>
+  </div>
+</div>
