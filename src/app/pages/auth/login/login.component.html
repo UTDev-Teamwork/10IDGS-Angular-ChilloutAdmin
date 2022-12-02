@@ -1,0 +1,105 @@
+<div class="contenedor">
+  <div class="card">
+    <div class="header">
+      <img src="assets/ChillOutBar.png" alt="ChillOut" />
+    </div>
+    <div *ngIf="isLogging">
+      <div>
+        <form [formGroup]="loginForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre de usuario</mat-label>
+            <input
+              matInput
+              placeholder="username"
+              formControlName="username"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              placeholder="password"
+              formControlName="password"
+              type="password"
+              required
+            />
+          </mat-form-field>
+        </form>
+      </div>
+      <div *ngIf="onError">
+        <mat-error>Usuario o contraseña incorrectos</mat-error>
+      </div>
+      <div>
+        <button (click)="enviar()">
+          <mat-spinner
+            *ngIf="loading"
+            [diameter]="30"
+            [strokeWidth]="4"
+          ></mat-spinner>
+          <span *ngIf="!loading">Iniciar sesión</span>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!isLogging">
+      <div>
+        <form [formGroup]="signinForm" class="form-signin">
+          <mat-form-field appearance="fill">
+            <mat-label>Nombre de usuario</mat-label>
+            <input
+              matInput
+              placeholder="username"
+              formControlName="username"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input
+              matInput
+              placeholder="password"
+              formControlName="password"
+              type="password"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Repite tu contraseña</mat-label>
+            <input
+              matInput
+              placeholder="password"
+              formControlName="password2"
+              type="password"
+              required
+            />
+          </mat-form-field>
+        </form>
+      </div>
+      <div>
+        <button (click)="enviar()" [swal]="alertSwal">
+          <mat-spinner
+            *ngIf="loading"
+            [diameter]="30"
+            [strokeWidth]="4"
+          ></mat-spinner>
+          <span *ngIf="!loading">Registrarme</span>
+        </button>
+      </div>
+    </div>
+    <div>
+      <a *ngIf="isLogging" (click)="changeForm()"
+        >¿No tienes cuenta? Regístrate</a
+      >
+      <a *ngIf="!isLogging" (click)="changeForm()"
+        >¿Ya tienes cuenta? Iniciar sesión</a
+      >
+    </div>
+    <swal
+      #alertSwal
+      title="Atención"
+      text="{{ swalMensaje }}"
+      icon="{{ swalTipo }}"
+    >
+    </swal>
+  </div>
+</div>

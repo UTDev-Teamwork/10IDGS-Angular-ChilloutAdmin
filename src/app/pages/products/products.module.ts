@@ -6,6 +6,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 // Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // Material Module
 import { MaterialModule } from 'src/app/material/material.module';
@@ -14,7 +15,7 @@ import { ProductCheckComponent } from './product-check/product-check.component';
 
 @NgModule({
   declarations: [ProductListComponent, ProductFormComponent, ProductCheckComponent],
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, SweetAlert2Module],
   exports: [ProductListComponent],
 })
 export class ProductsModule {}

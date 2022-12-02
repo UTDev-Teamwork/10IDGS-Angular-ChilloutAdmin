@@ -50,3 +50,26 @@ form{
   display: flex;
   flex-direction: column;
 }
+
+.slide-toggle-class{
+  margin: 1em 0;
+}
+
+.imgButton{
+  padding: 0em 0;
+  margin: 0 1em;
+}
+
+.hiddenInput{
+  display: none;
+}
+
+.imgfield{
+  margin: 1em 0;
+}
+
+.controls{
+  display: flex;
+  flex-direction: row;
+  margin: 1em 0;
+}

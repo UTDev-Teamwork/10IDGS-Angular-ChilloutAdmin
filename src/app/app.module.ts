@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Components
 import { AppComponent } from './app.component';
 
+// Interceptors
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 // Material Module
 import { MaterialModule } from './material/material.module';
 
@@ -15,15 +18,15 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // Modulos
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './pages/auth/auth.module';
 import { AnalyticsModule } from './pages/analytics/analytics.module';
 import { ProductsModule } from './pages/products/products.module';
 import { CategoriasModule } from './pages/categorias/categorias.module';
 import { ProveedoresModule } from './pages/proveedores/proveedores.module';
+import { AuthInterceptorService } from './interceptors/auth-interceptor-service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,12 +34,19 @@ import { ProveedoresModule } from './pages/proveedores/proveedores.module';
     SweetAlert2Module.forRoot(),
     MaterialModule,
     HttpClientModule,
+    AuthModule,
     AnalyticsModule,
     ProductsModule,
     CategoriasModule,
     ProveedoresModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

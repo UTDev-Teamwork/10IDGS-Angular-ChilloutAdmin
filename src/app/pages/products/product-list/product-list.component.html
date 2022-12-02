@@ -13,54 +13,54 @@
           <!-- Codigo de barras -->
           <ng-container matColumnDef="codBarras">
             <th mat-header-cell *matHeaderCellDef>Codigo de barras</th>
-            <td mat-cell *matCellDef="let element">{{ element.cod_barras }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.codBarras }}</td>
           </ng-container>
 
-          <!-- Id Clasificacion -->
+          <!-- Nombre -->
           <ng-container matColumnDef="idClasif">
-            <th mat-header-cell *matHeaderCellDef>ID Clas</th>
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.id_clasificacion }}
-            </td>
-          </ng-container>
-
-          <!-- Descripcion -->
-          <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef>Descripción</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.descripcion }}
-            </td>
-          </ng-container>
-
-          <!-- Descripcion corta -->
-          <ng-container matColumnDef="desCorta">
-            <th mat-header-cell *matHeaderCellDef>Descripción corta</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.descripcion_corta }}
-            </td>
-          </ng-container>
-
-          <!-- Precio -->
-          <ng-container matColumnDef="precio">
-            <th mat-header-cell *matHeaderCellDef>Precio</th>
-            <td mat-cell *matCellDef="let element">
-              $ {{ element.precio_venta }}
+              {{ element.nombre }}
             </td>
           </ng-container>
 
           <!-- Stock -->
-          <ng-container matColumnDef="stock">
+          <ng-container matColumnDef="descripcion">
             <th mat-header-cell *matHeaderCellDef>Stock</th>
             <td mat-cell *matCellDef="let element">
               {{ element.stock }}
             </td>
           </ng-container>
 
-          <!-- Articulo disponible -->
+          <!-- Precio Compra -->
+          <ng-container matColumnDef="desCorta">
+            <th mat-header-cell *matHeaderCellDef>Precio de compra</th>
+            <td mat-cell *matCellDef="let element">
+              $ {{ element.precioCompra }}
+            </td>
+          </ng-container>
+
+          <!-- Precio Venta -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio de venta</th>
+            <td mat-cell *matCellDef="let element">
+              $ {{ element.precioVenta }}
+            </td>
+          </ng-container>
+
+          <!-- Visible -->
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Visible</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.visible? 'Si' : 'No' }}
+            </td>
+          </ng-container>
+
+          <!-- Disponible -->
           <ng-container matColumnDef="artDisp">
             <th mat-header-cell *matHeaderCellDef>Disponible</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.articulo_disponible ? "SI" : "NO" }}
+              {{ element.disponible ? "SI" : "NO" }}
             </td>
           </ng-container>
 
@@ -76,18 +76,28 @@
                 <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="goToProveedor(element.codBarras)">
                   <mat-icon>visibility</mat-icon>
                   <span>Detalles</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="navigateTo(element.codBarras)">
                   <mat-icon>edit</mat-icon>
                   <span>Editar</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item [swal]="alertSwal">
                   <mat-icon>delete</mat-icon>
                   <span>Eliminar</span>
                 </button>
+                <swal
+                  #alertSwal
+                  title="Atención"
+                  text="Estas seguro de eliminar el articulo? Esta acción no se puede deshacer (Eliminar NO es lo mismo que desactivar)."
+                  icon="warning"
+                  [showCancelButton]="true"
+                  [focusCancel]="true"
+                  (confirm)="delete(element.codBarras)"
+                >
+                </swal>
               </mat-menu>
             </td>
           </ng-container>

@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="contenedor" *ngIf="(loggedStyle)">
   <mat-toolbar class="toolbar">
     <mat-icon (click)="isExpanded = !isExpanded; disabled = !disabled"
       >menu</mat-icon
@@ -12,7 +12,7 @@
     </ol>
     <span class="fill-remaining-space"></span>
     <span class="user">{{ username }}</span>
-    <mat-icon>logout</mat-icon>
+    <mat-icon (click)="logout()">logout</mat-icon>
   </mat-toolbar>
 
   <mat-drawer-container class="sidenav-container" hasBackdrop="true">
@@ -28,7 +28,7 @@
         </mat-nav-list>
         <!-- Submenu de Productos -->
         <mat-nav-list class="dashboard" *ngIf="productsModule">
-          <a mat-list-item class="submenu-item" [routerLink]="['/product']" (click)="drawer.toggle();">
+          <a mat-list-item class="submenu-item" [routerLink]="['/product']" (click)="drawer.toggle();" *ngIf="authPermiso">
             <mat-icon mat-list-icon>add_box</mat-icon>
             <p matLine>Nuevo articulo</p>
           </a>
@@ -39,7 +39,7 @@
         </mat-nav-list>
         <!-- Submenu de Categorías -->
         <mat-nav-list class="dashboard" *ngIf="categoriasModule">
-          <a mat-list-item class="submenu-item" [routerLink]="['/categoria']" (click)="drawer.toggle();">
+          <a mat-list-item class="submenu-item" [routerLink]="['/categoria']" (click)="drawer.toggle();" *ngIf="authPermiso">
             <mat-icon mat-list-icon>add</mat-icon>
             <p matLine>Nueva categoría</p>
           </a>
@@ -50,7 +50,7 @@
         </mat-nav-list>
         <!-- Submenu de Proveedores -->
         <mat-nav-list class="dashboard" *ngIf="proveedoresModule">
-          <a mat-list-item class="submenu-item" [routerLink]="['/proveedor']" (click)="drawer.toggle();">
+          <a mat-list-item class="submenu-item" [routerLink]="['/proveedor']" (click)="drawer.toggle();" *ngIf="authPermiso">
             <mat-icon mat-list-icon>person_add</mat-icon>
             <p matLine>Nuevo proveedor</p>
           </a>
@@ -140,4 +140,8 @@
       </mat-sidenav-container>
     </mat-drawer-content>
   </mat-drawer-container>
+</div>
+
+<div *ngIf="!loggedStyle">
+  <router-outlet></router-outlet>
 </div>

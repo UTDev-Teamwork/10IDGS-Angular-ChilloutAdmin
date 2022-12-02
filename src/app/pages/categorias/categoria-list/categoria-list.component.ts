@@ -37,7 +37,7 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
 
   isLoadingResults: boolean = false;
 
-  constructor(private web: CategoriaService, private router: Router,) {
+  constructor(private web: CategoriaService, private router: Router) {
     this.isLoadingResults = true;
     this.web.getAll().subscribe((data) => {
       this.data = data;
@@ -51,28 +51,19 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
 
   delete(id) {
     this.isLoadingResults = true;
-    this.web.delete(id).subscribe(
-      (res) => {
-        this.isLoadingResults = false;
-        this.web.getAll().subscribe((data) => {
-          this.data = data;
-          this.isLoadingResults = false;
-        });
-        Swal.fire(
-          'Realizado',
-          'La categoría a sido eliminada correctamente.',
-          'success'
-        );
-      },
-      (err) => {
-        console.log(err);
-        this.isLoadingResults = false;
-        Swal.fire('Error', 'No se pudo completar la petición.', 'error');
-      }
+    this.web.delete(id);
+    Swal.fire(
+      'Realizado',
+      'La categoría a sido eliminada correctamente.',
+      'success'
     );
+    this.web.getAll().subscribe((data) => {
+      this.data = data;
+      this.isLoadingResults = false;
+    });
   }
 
-  navigateTo(id){
-    this.router.navigate(['/categoria/'+id]);
+  navigateTo(id) {
+    this.router.navigate(['/categoria/' + id]);
   }
 }
