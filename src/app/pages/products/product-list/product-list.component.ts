@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { ArticuloModel } from 'src/app/interfaces/articulo-model';
 import { ArticuloService } from 'src/app/services/articulo-service';
 // Paginator Imports
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import Swal from 'sweetalert2';
 
 @Component({

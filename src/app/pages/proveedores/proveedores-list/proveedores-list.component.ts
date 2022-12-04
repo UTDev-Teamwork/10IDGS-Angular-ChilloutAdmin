@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { ProveedorModel } from 'src/app/interfaces/proveedor-model';
 import { ProveedorService } from 'src/app/services/proveedor-service';
 // Paginator & Alerts Imports
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatLegacyPaginator as MatPaginator, LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { CategoriaModel } from 'src/app/interfaces/categoria-model';
 import { CategoriaService } from 'src/app/services/categoria-service';
 // Paginator Imports
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import Swal from 'sweetalert2';
 
 @Component({
